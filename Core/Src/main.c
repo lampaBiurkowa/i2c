@@ -139,7 +139,7 @@ int main(void)
 		return 0;
 	}
 
-	result = HAL_I2C_Mem_Write(&hi2c1, LC1025_ADDR, 0, chunkSize * 2, data + currentIndex * 2, chunkSize * 2, HAL_MAX_DELAY);
+	result = HAL_I2C_Mem_Write(&hi2c1, LC1025_ADDR, 0, I2C_MEMADD_SIZE_16BIT, data + currentIndex * 2, chunkSize * 2, HAL_MAX_DELAY);
 	if (result != HAL_OK)
 	{
 		uint32_t code = HAL_I2C_GetError(&hi2c1);
@@ -147,7 +147,7 @@ int main(void)
 		HAL_UART_Transmit(&huart2, (uint8_t*)messageBuffer, strlen((char*)messageBuffer), HAL_MAX_DELAY);
 	}
 	HAL_Delay(20);
-	result = HAL_I2C_Mem_Read(&hi2c1, LC1025_ADDR, 0, chunkSize * 2, dataReceive + currentIndex * 2, chunkSize * 2, HAL_MAX_DELAY);
+	result = HAL_I2C_Mem_Read(&hi2c1, LC1025_ADDR, 0, I2C_MEMADD_SIZE_16BIT, dataReceive + currentIndex * 2, chunkSize * 2, HAL_MAX_DELAY);
 	if (result != HAL_OK)
 	{
 		uint32_t code = HAL_I2C_GetError(&hi2c1);
